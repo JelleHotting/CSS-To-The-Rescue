@@ -46,6 +46,16 @@
 
 ## Week 1 recap (dag 3)
 
+### Wat heb ik deze week gedaan?
+
+
+### Belangrijkste leerpunten
+
+* Het verschil tussen `@container` en `@media` queries en wanneer je welke gebruikt
+* Hoe je popovers en anchors in native HTML/CSS implementeert
+* Scroll animaties realiseren met `@container` queries
+* Een native caroussel bouwen zonder externe frameworks
+
 # Week 2
 
 ## Dag 1
@@ -66,7 +76,7 @@
 
 ### Wat ga ik morgen doen?
 - [ ] Animaties toevoegen aan de wijzer
-- [ ] Javascript toevoegen om de slider te laten werken
+- [x] Javascript toevoegen om de slider te laten werken
  
 ## Dag 2
 
@@ -74,3 +84,45 @@
 
 * Hoe je doormiddel van @property een variabele maakt die je in je css kan gebruiken
 * Hoe je deze variabele kan animeren
+
+## Week 2 recap (dag 3)
+
+### Wat heb ik deze week gedaan?
+
+### Belangrijkste leerpunten
+
+* 3D effecten creëren met `box-shadow` voor diepte en schaduwwerking
+* Een wijzer ontwerpen met `clip-path` en `perspectief` voor realistische weergave
+* `@property` gebruiken om CSS-variabelen aan te maken die je direct kunt animeren
+* Bij 3D rotaties in CSS zich de rotatie-as automatisch aanpassen aan de transformatie
+
+## Bronnen
+
+- Custom slider styling: [CodePen by Nicolas Jesenberger](https://codepen.io/nicolasjesenberger/pen/VwqzBqj) - aangepast voor dit project
+
+
+# Week 3 
+
+## Dag 1
+
+| Activiteit | Duur |
+|------------|------|
+| Custom progress input gemaakt | 4 uur |
+| Alles omgezet naar p3 kleurtjes | 0,5 uur |
+| De waardes van de sliders rechts gekoppeld aan een animatie | 2 uur |
+| Pauze | 1,5 uur |
+
+### Wat heb ik geleerd?
+
+* Hoe verschillende kleuren werken (p3, hsl en hex)
+* Hoe je een progress bar kan stylen en dat een ::after bijvoorbeeld niet werkt op dat element
+* Hoe je een slider kan koppelen aan een animatie
+
+### Wat ga ik morgen doen?
+- [ ] De error message dynamisch in laten voegen als je bepaalde dingen doet
+- [ ] Radio buttons laten werken
+
+
+
+
+
