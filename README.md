@@ -121,8 +121,44 @@
 ### Wat ga ik morgen doen?
 - [ ] De error message dynamisch in laten voegen als je bepaalde dingen doet
 - [ ] Radio buttons laten werken
+- [ ] Verschillende thema's maken die je kan selecteren (radio button)
+  
+## Dag 2
 
+| Activiteit | Duur |
+|------------|------|
+| Animatie toegevoegd als alle sliders op maximaal staan | 4 uur |
+| Stomme wiskunde geleerd | 2 uur |
+| Pauze | 1,5 uur |
 
+### Wat heb ik geleerd?
 
+* Wat sin cas toa is
+* Hoe je een animatie kan starten als aan bepaalde voorwaarden wordt voldaan
+* Hoe je @container queries kan gebruiken om te checken of sliders op 100 staat
+
+### Wat ga ik morgen doen?
+
+## Week 3 recap (dag 2)
+
+In de tweede week heb ik de visuele basis van het project neergezet en geëxperimenteerd met geavanceerde CSS-technieken voor diepte en beweging.
+
+### Styling & 3D Effecten
+Ik ben begonnen met de basisstyling, waarbij de focus lag op het creëren van een realistische interface. Door middel van `box-shadow`, `clip-path` and `perspectief` heb ik een wijzer en andere elementen ontworpen die een echt 3D-gevoel geven. Een belangrijk leerpunt was hoe de rotatie-as in CSS zich automatisch aanpast bij 3D-transformaties.
+
+![Wijzer](readme/wijzer.png)
+
+### Techniek & Interactiviteit
+Op technisch vlak heb ik de `@property` regel toegepast. Hiermee kon ik aangepaste variabelen maken die direct in CSS te animeren zijn. Daarnaast heb ik JavaScript toegevoegd om de slider functioneel te maken en de eerste animaties aan de wijzer gekoppeld.
+
+```css
+@property {
+
+}
+```
+
+**[Afbeelding: Het eindresultaat van week 2]**
+
+![Wijzer](readme/week2.png)
 
 

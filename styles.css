@@ -1,11 +1,5 @@
 @layer reset, base, layout, components, effects, animations, overrides;
 
-.vt323-regular {
-  font-family: "VT323", monospace;
-  font-weight: 400;
-  font-style: normal;
-}
-
 @property --v {
   syntax: "<number>";
   inherits: true;
@@ -21,7 +15,17 @@
 
 @layer base {
   :root {
+    --layout-max: 1120px;
+    --radius-panel: 8px;
     --slider-vier-kritiek: clamp(0, calc(var(--slider-vier, 0) - 99), 1);
+    --slider-een-max: clamp(0, calc(var(--slider-een, 0) - 99), 1);
+    --slider-twee-max: clamp(0, calc(var(--slider-twee, 0) - 99), 1);
+    --slider-drie-max: clamp(0, calc(var(--slider-drie, 0) - 9), 1);
+    --slider-vier-max: clamp(0, calc(var(--slider-vier, 0) - 99), 1);
+    --all-sliders-max: calc(
+      var(--slider-een-max) * var(--slider-twee-max) * var(--slider-drie-max) *
+        var(--slider-vier-max)
+    );
     --color-bg: rgb(17 17 17);
     --color-text: rgb(231 238 246);
     --color-danger: rgb(210 8 4);
@@ -80,17 +84,20 @@
 @layer layout {
   main {
     display: grid;
-    grid-template-columns: 360px 360px 360px;
-    gap: 2rem;
+    grid-template-columns: repeat(3, minmax(0, 360px));
+    gap: clamp(0.75rem, 2.5vw, 2rem);
     justify-content: center;
-    margin: 3.5rem auto;
+    width: min(100%, var(--layout-max));
+    margin: clamp(1rem, 5vw, 3.5rem) auto;
+    padding-inline: clamp(0.75rem, 3vw, 1.25rem);
     perspective: 1000px;
   }
 
-  main > div {
+  main > div:first-of-type {
     grid-column: 1 / -1;
+    width: 100%;
     text-align: center;
-    font-size: 2rem;
+    font-size: clamp(1.2rem, 4.2vw, 2rem);
     color: var(--color-danger);
     text-shadow: 0 0 2px rgb(0 0 0 / 0.8);
     animation: blink 3s infinite;
@@ -111,39 +118,44 @@
     }
   }
 
-  main > figure {
-    margin: 0;
-    grid-row: 1 / 2;
+  main > div:last-of-type {
+    grid-column: 1 / -1;
     width: 100%;
-    height: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    overflow: hidden;
+    border-radius: 6px;
+    position: relative;
+  }
+
+  main > div:last-of-type > figure {
+    margin: 0;
+    width: 100%;
+    height: 320px;
     position: relative;
     overflow: hidden;
   }
 
-  main > figure:nth-of-type(1) {
-    grid-column: 1;
+  main > div:last-of-type > figure:nth-of-type(1) {
     border-radius: 6px 0 0 6px;
   }
 
-  main > figure:nth-of-type(2) {
-    grid-column: 2;
+  main > div:last-of-type > figure:nth-of-type(2) {
     border-radius: 0;
   }
 
-  main > figure:nth-of-type(3) {
-    grid-column: 3;
+  main > div:last-of-type > figure:nth-of-type(3) {
     border-radius: 0 6px 6px 0;
   }
 
   main > fieldset {
-    grid-row: 2;
     width: 100%;
-    height: 240px;
+    min-height: 210px;
     justify-self: center;
     border: none;
     background: var(--color-panel);
-    border-radius: 8px;
-    padding: 22px;
+    border-radius: var(--radius-panel);
+    padding: clamp(14px, 2.5vw, 22px);
     position: relative;
     transform-style: preserve-3d;
   }
@@ -161,7 +173,7 @@
   main > fieldset:nth-of-type(2) {
     grid-column: 2;
     max-width: 240px;
-    height: 220px;
+    min-height: 200px;
     border-radius: 6px;
     display: flex;
     align-items: center;
@@ -174,16 +186,89 @@
     max-width: 360px;
     transform: rotateX(55deg) rotateZ(12deg) translateZ(30px);
   }
+
+  @media (max-width: 1100px) {
+    main {
+      grid-template-columns: repeat(2, minmax(0, 360px));
+      width: min(100%, 780px);
+    }
+
+    main > fieldset:nth-of-type(1),
+    main > fieldset:nth-of-type(2),
+    main > fieldset:nth-of-type(3) {
+      grid-column: auto;
+      max-width: 360px;
+      width: 100%;
+      transform: none;
+    }
+
+    main > fieldset:nth-of-type(2) {
+      min-height: 180px;
+    }
+  }
+
+  @media (max-width: 768px) {
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: min(100%, 460px);
+      perspective: none;
+    }
+
+    main > div:last-of-type {
+      display: grid;
+      grid-template-columns: none;
+      grid-auto-flow: column;
+      grid-auto-columns: 100%;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      border: 4px solid var(--color-frame);
+      border-radius: 10px;
+      background: rgb(0 0 0 / 0.2);
+    }
+
+    main > div:last-of-type > figure {
+      min-height: 220px;
+      height: auto;
+      aspect-ratio: 16 / 10;
+      border-radius: 0;
+      scroll-snap-align: center;
+      scroll-snap-stop: always;
+    }
+
+    main > fieldset {
+      width: min(100%, 360px);
+      min-height: initial;
+      border-radius: 6px;
+      transform: none;
+    }
+
+    main > fieldset:nth-of-type(2) {
+      min-height: 180px;
+    }
+
+  }
+
+  @media (max-width: 480px) {
+    main {
+      margin-block: 1rem 1.5rem;
+      padding-inline: 0.6rem;
+    }
+
+    main > div:first-of-type {
+      border-radius: 4px;
+    }
+  }
 }
 
 @layer effects {
-  main {
+  main > div:last-of-type {
     &::before {
       content: "";
-      grid-column: 1 / -1;
-      grid-row: 1 / 2;
       display: block;
-      height: 320px;
+      position: absolute;
+      inset: 0;
       border-radius: 10px;
       background-image: radial-gradient(
         circle,
@@ -202,19 +287,19 @@
 
     > figure {
       &::before {
-        content: "";
+        content: "● REC";
         position: absolute;
-        inset: 0;
-        background-image: repeating-linear-gradient(
-          to bottom,
-          transparent 0px,
-          transparent 2px,
-          rgb(0 0 0 / 0.2) 4px
-        );
-        background-size: 100% 100%;
-        z-index: 1;
+        top: 15px;
+        left: 15px;
+        color: var(--color-danger);
+        font-family: "VT323", monospace;
+        font-weight: 400;
+        font-style: normal;
+        font-size: clamp(1.2rem, 2.2vw, 2rem);
+        text-shadow: 0 0 2px rgb(0 0 0 / 0.8);
+        animation: blink 2s infinite;
+        z-index: 3;
         pointer-events: none;
-        animation: scanline 0.5s linear infinite;
       }
 
       > img {
@@ -222,22 +307,52 @@
         height: 100%;
         object-fit: cover;
         display: block;
+        transform-origin: center;
         filter: sepia(100%) hue-rotate(60deg) contrast(1.4) brightness(0.9)
           blur(0.5px);
       }
 
       &::after {
-        content: "● REC";
+        content: "";
+        inset: 0;
         position: absolute;
-        top: 15px;
-        right: 15px;
-        color: var(--color-danger);
-        font-family: "VT323", monospace;
-        font-weight: 400;
-        font-style: normal;
-        font-size: 2rem;
-        text-shadow: 0 0 2px rgb(0 0 0 / 0.8);
-        animation: blink 2s infinite;
+        opacity: 0;
+        z-index: 2;
+        pointer-events: none;
+
+        /* Maak een static tv screen als background image */
+        /* Co-pilot 12 maart 2026 */
+        background-image:
+          repeating-conic-gradient(
+            from 0deg,
+            rgb(255 255 255) 0% 25%,
+            rgb(0 0 0) 25% 50%
+          ),
+          repeating-linear-gradient(
+            90deg,
+            rgb(255 255 255 / 0.35) 0 1px,
+            rgb(0 0 0 / 0.35) 1px 2px
+          ),
+          radial-gradient(circle at center, rgb(255 255 255 / 0.3), rgb(0 0 0));
+        background-size:
+          3px 3px,
+          2px 2px,
+          100% 100%;
+        background-color: rgb(18 18 18);
+      }
+    }
+  }
+
+  @media (max-width: 768px) {
+    main > div:last-of-type {
+      &::before {
+        display: none;
+      }
+
+      > figure {
+        &::before {
+          font-size: clamp(1.2rem, 6vw, 1.6rem);
+        }
       }
     }
   }
@@ -246,7 +361,7 @@
 @layer components {
   main > fieldset:nth-of-type(1) > div {
     --v: 0;
-    width: 68px;
+    width: clamp(54px, 15vw, 68px);
     aspect-ratio: 1;
     position: relative;
   }
@@ -300,6 +415,7 @@
     appearance: none;
     display: block;
     width: 100%;
+    height:68px;
     aspect-ratio: 1;
     border: 1.5px solid rgb(0 0 0);
     border-radius: 50%;
@@ -339,9 +455,10 @@
     flex-basis: 100%;
   }
 
-  main > fieldset:nth-of-type(2) button {
-    width: 110px;
-    height: 110px;
+  main > fieldset:nth-of-type(2) input[type="checkbox"] {
+    appearance: none;
+    width: clamp(84px, 24vw, 110px);
+    height: clamp(84px, 24vw, 110px);
     border-radius: 12px;
     background: var(--color-button);
     border: none;
@@ -349,23 +466,27 @@
     align-items: center;
     justify-content: center;
     cursor: pointer;
-
+    
     &::before {
       content: "";
-      width: 70px;
-      height: 70px;
+      width: clamp(54px, 16vw, 70px);
+      height: clamp(54px, 16vw, 70px);
       border-radius: 50%;
       background: var(--color-button-danger);
       display: block;
+
+      transform: translateY(-18px);
       box-shadow:
-        0 6px 0 var(--color-button-danger-shadow),
-        0 0 18px var(--color-button-glow);  
-      border: 2px solid rgb(125, 0, 0);
+        0 18px 0 var(--color-button-danger-shadow),
+        0 8px 0 var(--color-button-danger-shadow),
+        0 0 20px var(--color-button-glow);
     }
 
-    &:active::before {
+    &:active::before,
+    &:checked::before {
       transform: translateY(5px);
-      box-shadow: 0 3px 0 var(--color-button-danger);
+      box-shadow:
+        inset 0 12px 0 var(--color-button-danger-shadow);
     }
   }
 
@@ -373,11 +494,11 @@
   main > fieldset:nth-of-type(3) > input[type="range"] {
     appearance: none;
     width: 100%;
-    height: 0.375em;
+    height: clamp(0.35em, 0.7vw, 0.45em);
     background: var(--color-track);
     border-radius: 3.125em;
     outline: none;
-    margin: 14px 0;
+    margin: clamp(10px, 2vw, 14px) 0;
     cursor: pointer;
     box-shadow:
       inset 0 0.0625em 0.125em rgb(0 0 0 / 0.4),
@@ -531,11 +652,77 @@
   }
 }
 
-@layer overrides {
-  figure:nth-of-type(3) img {
-    transform: scale(calc(var(--slider-drie) * 1))
-      translateX(calc((var(--slider-een) - 50) * 1%));
+@keyframes tv-off {
+  0% {
+    transform: scale(1);
+    opacity: 1;
+    filter: sepia(100%) hue-rotate(60deg) contrast(1.4) brightness(0.9)
+      blur(0.5px);
   }
 
+  25% {
+    transform: scaleY(0.06);
+    opacity: 1;
+    filter: brightness(4) saturate(0) contrast(1.4);
+  }
+
+  45% {
+    transform: scaleY(0.01) scaleX(1);
+    opacity: 1;
+    filter: brightness(12) saturate(0) contrast(1.8);
+  }
+
+  65% {
+    transform: scaleY(0.01) scaleX(0.08);
+    opacity: 1;
+    filter: brightness(7) saturate(0) contrast(1.6);
+  }
+
+  85% {
+    transform: scale(0.005);
+    opacity: 0.4;
+    filter: brightness(1.2) saturate(0);
+  }
+
+  100% {
+    transform: scale(0);
+    opacity: 0;
+    filter: brightness(0);
+  }
+}
+
+@layer overrides {
+  main > div:last-of-type > figure:nth-of-type(3) img {
+    transform: scale(calc(var(--slider-drie) * 1));
+  }
+
+  main > div:first-of-type {
+    opacity: clamp(0, calc(var(--all-sliders-max) - 99), 1);
+    animation-delay: calc((1 - var(--all-sliders-max)) * 99999s);
+  }
+
+  main > div:last-of-type > figure:nth-of-type(1) > img {
+    animation: tv-off 1.15s ease-in forwards;
+    animation-delay: calc((1 - var(--all-sliders-max)) * 99999s);
+  }
+
+
+
+  main > div:last-of-type > figure:nth-of-type(2) > img {
+    animation: tv-off 1.15s ease-in forwards;
+    animation-delay: calc((1 - var(--all-sliders-max)) * 99999s + 0.22s);
+  }
+
+
+
+  main > div:last-of-type > figure:nth-of-type(3) > img {
+    animation: tv-off 1.15s ease-in forwards;
+    animation-delay: calc((1 - var(--all-sliders-max)) * 99999s + 0.44s);
+  }
+
+
+
   
+
+
 }
