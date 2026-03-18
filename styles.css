@@ -10,7 +10,7 @@
 }
 @layer base {
 
-  /* Bron: https://developer.mozilla.org/en-US/docs/Web/CSS/@property */
+  /* Bron: MDN Web Docs – @property (https://developer.mozilla.org/en-US/docs/Web/CSS/@property) */
   @property --slider-een {
     syntax: "<number>";
     inherits: true;
@@ -389,7 +389,7 @@
         pointer-events: none;
 
         /* Maak een static tv screen als background image */
-        /* Co-pilot 12 maart 2026 */  
+        /* AI-hulp: GitHub Copilot (https://github.com/features/copilot) */
         background-image:
           repeating-conic-gradient(
             from 0deg,
@@ -553,7 +553,7 @@
     }
   }
 
-  /* Gebaseerd op: https://codepen.io/nicolasjesenberger/pen/VwqzBqj (aangepast voor dit project) */
+  /* Bron: CodePen – Pen VwqzBqj (https://codepen.io/nicolasjesenberger/pen/VwqzBqj), aangepast voor dit project */
   main > fieldset:nth-of-type(3) > input[type="range"] {
     appearance: none;
     width: 100%;
@@ -766,7 +766,7 @@
 }
 
 @layer overrides {
-  /* Bron: https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_size_and_style_queries */
+  /* Bron: MDN Web Docs – Container size and style queries (https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_containment/Container_size_and_style_queries) */
   @container style(--slider-vier: 100) {
     main > fieldset:nth-of-type(1) > div::after {
       animation:

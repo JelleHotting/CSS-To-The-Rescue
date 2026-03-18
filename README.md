@@ -1,4 +1,4 @@
-![Wijzer](readme/image.png){height="450"}
+![Wijzer](readme/image.png)
 
 ## Week 1
 
