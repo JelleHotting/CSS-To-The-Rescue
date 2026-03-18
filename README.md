@@ -1,4 +1,7 @@
-![Wijzer](readme/image.png)
+![Readmemooi](readme/image.png)
+
+> [!WARNING]
+> Momenteel alleen werkend in Chrome en Safari, Firefox volgt later. Gebruik een van deze browsers voor de beste ervaring.
 
 ## Week 1
 
