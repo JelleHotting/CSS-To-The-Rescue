@@ -179,6 +179,25 @@ Op technisch vlak heb ik de `@property` regel toegepast. Hiermee kon ik aangepas
 |------------|------|
 | Readme verbeterd | 2 uur |
 
+### Eindreflectie
+
+Met dit project heb ik veel geleerd over nieuwe css technieken (zowel voor mij nieuw als nieuw in het algemeen). Ik heb een mooi werkend control panel gemaakt met veel features door middel van dingen als `@property` en `@container`. Ik ben erg blij met het eindresultaat en heb veel geleerd over hoe ik mijn code beter kan structureren en documenteren.
+
+Wat mij soepel afging was het maken was de basisstyling, ik had al snel iets wat leek op Chernobyl en een soort kernreactor. Het later finetunen hiervan en exact krijgen wat ik wou duurde iets langer maar ik ben zeker tevereden met het effect wat ik uiteindelijk heb bereikt, dingen als een knop die echt 3d is enzo.
+
+Wat ik iets moeilijker vond was het maken van de sliders, ik heb hiervoor een voorbeeld moeten kijken en die uiteraard moeten tweaken. Uiteindelijk denk ik dat ik hem beter hem gemaakt aangezien het orgineel heel veel divs gebruikt en ik alleen het orignele input element gebruik met boxshadows.
+
+Ook vond ik het lastig om te checken of of de sliders op 100 stonden, ik gebruikte eerst een hacky manier met `animation-delay` maar uiteindelijk heb ik dit kunnen oplossen met `@container` queries wat een stuk netter is. (En direct een goede use-case voor deze techniek)
+
+Ik heb nooit mijn orginele doel werkend gekregen dat de hele website opblaast als je alle sliders op 100 zet, maar ik ben wel tevreden met het resultaat wat ik uiteindelijk heb bereikt. Ik heb een leuke animatie kunnen maken die start als je alle sliders op 100 zet en dat is ook al een mooi resultaat.
+
+Ik heb veel geleerd over hoe je `@layer` kan gebruiken in grotere CSS projecten, al was het in dit project niet echt nodig aangezien het maar een paar regels CSS zijn. Maar ik denk dat het in grotere projecten zeker van pas kan komen om je CSS beter te organiseren en te structureren.
+
+Ook denk ik dat je container queries goed kan gebruiken voor echt die responsive elementen maken die op meerdere plekken terug komen, wat ook nog niet echt in dit project van toepassin was.
+
+![Eindresultaat Desktop](readme/eindresultaat.png)
+![Eindresultaat Mobile](readme/eindresultaat-mobile.png)
+
 ## Bronnen en AI-verantwoording
 
 ### Externe bronnen
